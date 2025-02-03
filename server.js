@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import connect from './database/connection';
+import connect from './database/connection.js';
+import router from './router/route.js';
 
 
 const app = express();
@@ -20,6 +21,9 @@ const port = 8080;
 app.get('/', (req, res) => {
     res.status(201).json("Home GET Request");
 });
+
+/** routes */
+app.use('/api', router);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
