@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import connect from './database/connection';
 
 
 const app = express();
@@ -20,6 +21,22 @@ app.get('/', (req, res) => {
     res.status(201).json("Home GET Request");
 });
 
-app.listen(port, () => {
-    console.log(`Server connected tp //http://localhost:${port}`);
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+/** start server when  have valid connection */
+connect().then(() => {
+    try {
+        app.listen(port, () => {
+            console.log(`Server connected tp http://localhost:${port}`);
+        });
+    } catch (error) {
+        console.log("Cannot connect to the server");
+    }
+}).catch(error => {
+    console.log("Invalid database connection!");
 })
+
