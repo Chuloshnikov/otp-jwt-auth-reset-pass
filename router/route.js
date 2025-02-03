@@ -2,10 +2,12 @@ import { Router } from "express";
 
 const router = Router();
 
+/**import all controllers */
+import * as controller from '../controllers/appController.js';
 
 /**POST  */
 
-router.route('/register').post((req, res) => res.status(201).json("Register POST Request"));
+router.route('/register').post(controller.register); //register user
 router.route('/registerMail').post(); //send an email
 router.route('/authenticate').post(); //authenticate user
 router.route('/login').post(); // login in app
