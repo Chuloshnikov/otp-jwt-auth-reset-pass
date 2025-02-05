@@ -30,7 +30,7 @@ let MailGenerator = new Mailgen({
 /** POST: http://localhost:8080/api/registerMail 
  * @param {
  * "username": "example123",
- * "userEmail": "pexample123@gmail.com",
+ * "userEmail": "example123@gmail.com",
  * "text": "Testing Mail",
  * "subject": "Backend Mail Request"
  * }
