@@ -190,5 +190,16 @@ export async function createResetSession(req, res) {
 
 /* PUT: http://localhost:8080/api/resetPassword */
 export async function resetPassword(req, res) {
-    res.json('resetPassword route');
+    try {
+
+        const { username, password } = req.body;
+
+        try {
+
+        } catch {
+            return. res.status(500).send({ error });
+        }
+    } catch (error) {
+        return res.status(401).send({ error });
+    }
 }
