@@ -4,7 +4,7 @@ const router = Router();
 
 /**import all controllers */
 import * as controller from '../controllers/appController.js';
-import Auth from '../middleware/auth.js';
+import Auth, { localVariables } from '../middleware/auth.js';
 
 /**POST  */
 
@@ -15,7 +15,7 @@ router.route('/login').post(controller.verifyUser, controller.login); // login i
 
 /**GET  */
 router.route('/user/:username').get(controller.getUser); //find user with username
-router.route('/generateOTP').get(controller.generateOTP); //generate random OTP
+router.route('/generateOTP').get(localVariables, controller.verifyUser, controller.generateOTP); //generate random OTP
 router.route('/verifyOTP').get(controller.verifyOTP); //verify generated OTP
 router.route('/createResetSession').get(controller.createResetSession); // reset all the variables
 
